@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "452815223838",
+    "project_id": "mci-technical-task",
+    "storage_bucket": "mci-technical-task.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452815223838:android:533324f2332bfec66e820f",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQzuiVKqs0TqSuMmbyiuAdE8jC-nr8ofg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
