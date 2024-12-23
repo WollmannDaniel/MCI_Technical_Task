@@ -12,7 +12,7 @@
       "repUnit": "Wdh",
       "weight": 20,
       "weightUnit": "kg",
-      "break": 60,
+      "breakTime": 60,
       "muscleGroup": "Beine",
       "equipment": ["Rack", "Langhantel"]
     },
@@ -23,7 +23,7 @@
       "repUnit": "Wdh",
       "weight": 20,
       "weightUnit": "kg",
-      "break": 60,
+      "breakTime": 60,
       "muscleGroup": "Brust",
       "equipment": ["Bank", "Kurzhanteln"]
     },
@@ -34,7 +34,7 @@
       "repUnit": "Wdh",
       "weight": 20,
       "weightUnit": "kg",
-      "break": 60,
+      "breakTime": 60,
       "muscleGroup": "Rücken",
       "equipment": ["Langhantel"]
     },
@@ -45,7 +45,7 @@
       "repUnit": "Wdh",
       "weight": 0,
       "weightUnit": "kg",
-      "break": 60,
+      "breakTime": 60,
       "muscleGroup": "Rücken",
       "equipment": ["Klimmzugstange"]
     },
@@ -56,7 +56,7 @@
       "repUnit": "s",
       "weight": 0,
       "weightUnit": "kg",
-      "break": 60,
+      "breakTime": 60,
       "muscleGroup": "Bauch",
       "equipment": []
     }

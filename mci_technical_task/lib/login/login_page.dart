@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
+import 'package:mci_technical_task/model/training.dart';
+import 'package:mci_technical_task/utils/helper.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -64,10 +66,11 @@ class LoginPage extends StatelessWidget {
                       loginController
                           .loginUser(emailTextController.text,
                               passwordTextController.text)
-                          .then((isLoggedIn) {
+                          .then((isLoggedIn) async {
                         if (isLoggedIn) {
+                          final Training training = await loadJsonFromAssets();
                           //navigate to dashboard page if login was successful
-                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(DashboardPage(training: training)); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }
@@ -82,10 +85,11 @@ class LoginPage extends StatelessWidget {
                       loginController
                           .createUser(emailTextController.text,
                               passwordTextController.text)
-                          .then((isLoggedIn) {
+                          .then((isLoggedIn) async {
                         if (isLoggedIn) {
+                          final Training training = await loadJsonFromAssets();
                           //navigate to dashboard page if registration was successful
-                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(DashboardPage(training: training)); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }

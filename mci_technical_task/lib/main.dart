@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/login/login_page.dart';
+import 'package:mci_technical_task/model/training.dart';
+import 'package:mci_technical_task/utils/helper.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,11 +13,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  final Training training = await loadJsonFromAssets(); //load training immediately in case of user is already authenticated
+
+  runApp(MyApp(training: training));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Training training;
+
+  const MyApp({super.key, required this.training});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
       ),
-      home: userIsAuthenticated ? DashboardPage() : LoginPage(),
+      home: userIsAuthenticated ? DashboardPage(training: training) : LoginPage(),
     );
   }
 }
