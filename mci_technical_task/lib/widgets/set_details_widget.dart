@@ -37,6 +37,12 @@ class SetDetailsWidget extends StatelessWidget {
                 Text('${exercise.value.sets[index].weight.amount} ${exercise.value.sets[index].weight.unit} '),
               ]),
             ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(children: [
+                Text(exercise.value.sets[index].calculatedMaxRep > 0 ? '${exercise.value.sets[index].calculatedMaxRep.toStringAsFixed(0)} ${exercise.value.sets[index].weight.unit}' : '- ${exercise.value.sets[index].weight.unit}'),
+              ]),
+            ),
           ],
         );
       },

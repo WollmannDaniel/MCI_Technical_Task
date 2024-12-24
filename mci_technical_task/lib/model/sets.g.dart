@@ -9,12 +9,14 @@ part of 'sets.dart';
 _$MySetImpl _$$MySetImplFromJson(Map<String, dynamic> json) => _$MySetImpl(
       reps: Reps.fromJson(json['reps'] as Map<String, dynamic>),
       weight: Weight.fromJson(json['weight'] as Map<String, dynamic>),
+      calculatedMaxRep: (json['calculatedMaxRep'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$MySetImplToJson(_$MySetImpl instance) =>
     <String, dynamic>{
       'reps': instance.reps,
       'weight': instance.weight,
+      'calculatedMaxRep': instance.calculatedMaxRep,
     };
 
 _$RepsImpl _$$RepsImplFromJson(Map<String, dynamic> json) => _$RepsImpl(

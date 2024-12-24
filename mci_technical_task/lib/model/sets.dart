@@ -8,6 +8,7 @@ class MySet with _$MySet {
   const factory MySet({
     required Reps reps,
     required Weight weight,
+    required double calculatedMaxRep,
   }) = _MySet;
 
   factory MySet.fromJson(Map<String, dynamic> json) => _$MySetFromJson(json);

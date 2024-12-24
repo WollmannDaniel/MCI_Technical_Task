@@ -19,7 +19,8 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         },
         {
           "reps": {
@@ -29,10 +30,11 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         }
       ],
-      "breakTime": 4,
+      "breakTime": 1,
       "muscleGroup": "Beine",
       "equipment": [
         "Rack",
@@ -52,7 +54,8 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         },
         {
           "reps": {
@@ -62,10 +65,11 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         }
       ],
-      "breakTime": 4,
+      "breakTime": 1,
       "muscleGroup": "Brust",
       "equipment": [
         "Bank",
@@ -85,7 +89,8 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         },
         {
           "reps": {
@@ -95,10 +100,11 @@
           "weight": {
             "amount": 20,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         }
       ],
-      "breakTime": 4,
+      "breakTime": 1,
       "muscleGroup": "Rücken",
       "equipment": [
         "Langhantel"
@@ -117,7 +123,8 @@
           "weight": {
             "amount": 0,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         },
         {
           "reps": {
@@ -127,10 +134,11 @@
           "weight": {
             "amount": 0,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         }
       ],
-      "breakTime": 4,
+      "breakTime": 1,
       "muscleGroup": "Rücken",
       "equipment": [
         "Klimmzugstange"
@@ -149,7 +157,8 @@
           "weight": {
             "amount": 0,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         },
         {
           "reps": {
@@ -159,10 +168,11 @@
           "weight": {
             "amount": 0,
             "unit": "kg"
-          }
+          },
+          "calculatedMaxRep": 0
         }
       ],
-      "breakTime": 4,
+      "breakTime": 1,
       "muscleGroup": "Bauch",
       "equipment": []
     }

@@ -8,7 +8,7 @@ import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/widgets/set_details_widget.dart';
 
 class ExerciseWidget extends StatelessWidget {
-  final Rx<Exercise>  exercise;
+  final Rx<Exercise> exercise;
 
   const ExerciseWidget({
     Key? key,
@@ -38,37 +38,40 @@ class ExerciseWidget extends StatelessWidget {
             Text('Equipment: ${exercise.value.equipment.join(', ')}'),
             Obx(() {
               return Column(
-                      children: [
-                        SetDetailsWidget(exercise: exercise),
-                        (!exercise.value.exerciseDone && !timerController.isTimerRunning.value) ? Padding(
+                children: [
+                  SetDetailsWidget(exercise: exercise),
+                  (!exercise.value.exerciseDone &&
+                          !timerController.isTimerRunning.value)
+                      ? Padding(
                           padding: const EdgeInsets.only(left: 25),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(children: [Container()],),
+                                child: Column(
+                                  children: [Container()],
                                 ),
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.only(left: 5.0),
                                   child: Column(
                                     children: [
                                       Row(
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                              trainingController.incrementReps(exercise.value.name);
+                                              trainingController.decrementReps(
+                                                  exercise.value.name);
                                             },
-                                            child: Icon(Icons.add_box),
+                                            child: Icon(Icons.remove_circle),
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              trainingController.decrementReps(exercise.value.name);
+                                              trainingController.incrementReps(
+                                                  exercise.value.name);
                                             },
-                                            child: Icon(Icons.remove_circle),
+                                            child: Icon(Icons.add_box),
                                           ),
                                         ],
                                       ),
@@ -77,41 +80,55 @@ class ExerciseWidget extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 15.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                              trainingController.incrementWeight(exercise.value.name);
-                                            },
-                                            child: Icon(Icons.add_box),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              trainingController.decrementWeight(exercise.value.name);
+                                              trainingController.decrementWeight(
+                                                  exercise.value.name);
                                             },
                                             child: Icon(Icons.remove_circle),
                                           ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              trainingController.incrementWeight(
+                                                  exercise.value.name);
+                                            },
+                                            child: Icon(Icons.add_box),
+                                          ),
                                         ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              )
+                              ),
+                              Expanded(
+                                child: Column(
+                                  children: [Container()],
+                                ),
+                              ),
                             ],
                           ),
-                        ): Container(),
-                        (!exercise.value.exerciseDone && !timerController.isTimerRunning.value) ? Center(
+                        )
+                      : Container(),
+                  (!exercise.value.exerciseDone &&
+                          !timerController.isTimerRunning.value)
+                      ? Center(
                           child: ElevatedButton(
                               onPressed: () {
-                                trainingController.incrementActiveSet(exercise.value.name, timerController);
-                              }, child: Text('Set done')),
-                        ): Container(),
-                      ],
-                    );
+                                trainingController.incrementActiveSet(
+                                    exercise.value.name, timerController);
+                              },
+                              child: Text('Set done')),
+                        )
+                      : Container(),
+                ],
+              );
             }),
           ],
         ),

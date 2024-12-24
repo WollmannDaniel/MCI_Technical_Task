@@ -22,6 +22,7 @@ MySet _$MySetFromJson(Map<String, dynamic> json) {
 mixin _$MySet {
   Reps get reps => throw _privateConstructorUsedError;
   Weight get weight => throw _privateConstructorUsedError;
+  double get calculatedMaxRep => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $MySetCopyWith<$Res> {
   factory $MySetCopyWith(MySet value, $Res Function(MySet) then) =
       _$MySetCopyWithImpl<$Res, MySet>;
   @useResult
-  $Res call({Reps reps, Weight weight});
+  $Res call({Reps reps, Weight weight, double calculatedMaxRep});
 
   $RepsCopyWith<$Res> get reps;
   $WeightCopyWith<$Res> get weight;
@@ -54,6 +55,7 @@ class _$MySetCopyWithImpl<$Res, $Val extends MySet>
   $Res call({
     Object? reps = null,
     Object? weight = null,
+    Object? calculatedMaxRep = null,
   }) {
     return _then(_value.copyWith(
       reps: null == reps
@@ -64,6 +66,10 @@ class _$MySetCopyWithImpl<$Res, $Val extends MySet>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
+      calculatedMaxRep: null == calculatedMaxRep
+          ? _value.calculatedMaxRep
+          : calculatedMaxRep // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -91,7 +97,7 @@ abstract class _$$MySetImplCopyWith<$Res> implements $MySetCopyWith<$Res> {
       __$$MySetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Reps reps, Weight weight});
+  $Res call({Reps reps, Weight weight, double calculatedMaxRep});
 
   @override
   $RepsCopyWith<$Res> get reps;
@@ -112,6 +118,7 @@ class __$$MySetImplCopyWithImpl<$Res>
   $Res call({
     Object? reps = null,
     Object? weight = null,
+    Object? calculatedMaxRep = null,
   }) {
     return _then(_$MySetImpl(
       reps: null == reps
@@ -122,6 +129,10 @@ class __$$MySetImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
+      calculatedMaxRep: null == calculatedMaxRep
+          ? _value.calculatedMaxRep
+          : calculatedMaxRep // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -129,7 +140,10 @@ class __$$MySetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MySetImpl implements _MySet {
-  const _$MySetImpl({required this.reps, required this.weight});
+  const _$MySetImpl(
+      {required this.reps,
+      required this.weight,
+      required this.calculatedMaxRep});
 
   factory _$MySetImpl.fromJson(Map<String, dynamic> json) =>
       _$$MySetImplFromJson(json);
@@ -138,10 +152,12 @@ class _$MySetImpl implements _MySet {
   final Reps reps;
   @override
   final Weight weight;
+  @override
+  final double calculatedMaxRep;
 
   @override
   String toString() {
-    return 'MySet(reps: $reps, weight: $weight)';
+    return 'MySet(reps: $reps, weight: $weight, calculatedMaxRep: $calculatedMaxRep)';
   }
 
   @override
@@ -150,12 +166,14 @@ class _$MySetImpl implements _MySet {
         (other.runtimeType == runtimeType &&
             other is _$MySetImpl &&
             (identical(other.reps, reps) || other.reps == reps) &&
-            (identical(other.weight, weight) || other.weight == weight));
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.calculatedMaxRep, calculatedMaxRep) ||
+                other.calculatedMaxRep == calculatedMaxRep));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, reps, weight);
+  int get hashCode => Object.hash(runtimeType, reps, weight, calculatedMaxRep);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +191,9 @@ class _$MySetImpl implements _MySet {
 
 abstract class _MySet implements MySet {
   const factory _MySet(
-      {required final Reps reps, required final Weight weight}) = _$MySetImpl;
+      {required final Reps reps,
+      required final Weight weight,
+      required final double calculatedMaxRep}) = _$MySetImpl;
 
   factory _MySet.fromJson(Map<String, dynamic> json) = _$MySetImpl.fromJson;
 
@@ -181,6 +201,8 @@ abstract class _MySet implements MySet {
   Reps get reps;
   @override
   Weight get weight;
+  @override
+  double get calculatedMaxRep;
   @override
   @JsonKey(ignore: true)
   _$$MySetImplCopyWith<_$MySetImpl> get copyWith =>
