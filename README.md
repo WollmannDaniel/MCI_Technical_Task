@@ -1,7 +1,7 @@
 # MCI_Technical_Task
 
 ## Login Screen
-![](https://github.com/WollmannDaniel/MCI_Technical_Task/blob/6b210e580a11f660dba76dd9e0792674e6ef7c2b/login.png | width=100)
+<img src="https://github.com/WollmannDaniel/MCI_Technical_Task/blob/6b210e580a11f660dba76dd9e0792674e6ef7c2b/login.png" width="200" />
 
 ## Dashboard Screen
 ![](https://github.com/WollmannDaniel/MCI_Technical_Task/blob/6b210e580a11f660dba76dd9e0792674e6ef7c2b/dashboard.png =250x)
