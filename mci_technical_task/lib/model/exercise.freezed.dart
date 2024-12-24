@@ -21,11 +21,9 @@ Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Exercise {
   String get name => throw _privateConstructorUsedError;
-  int get sets => throw _privateConstructorUsedError;
-  int get reps => throw _privateConstructorUsedError;
-  String get repUnit => throw _privateConstructorUsedError;
-  int get weight => throw _privateConstructorUsedError;
-  String get weightUnit => throw _privateConstructorUsedError;
+  int get activeSet => throw _privateConstructorUsedError;
+  bool get exerciseDone => throw _privateConstructorUsedError;
+  List<MySet> get sets => throw _privateConstructorUsedError;
   int get breakTime => throw _privateConstructorUsedError;
   String get muscleGroup => throw _privateConstructorUsedError;
   List<String> get equipment => throw _privateConstructorUsedError;
@@ -43,11 +41,9 @@ abstract class $ExerciseCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      int sets,
-      int reps,
-      String repUnit,
-      int weight,
-      String weightUnit,
+      int activeSet,
+      bool exerciseDone,
+      List<MySet> sets,
       int breakTime,
       String muscleGroup,
       List<String> equipment});
@@ -67,11 +63,9 @@ class _$ExerciseCopyWithImpl<$Res, $Val extends Exercise>
   @override
   $Res call({
     Object? name = null,
+    Object? activeSet = null,
+    Object? exerciseDone = null,
     Object? sets = null,
-    Object? reps = null,
-    Object? repUnit = null,
-    Object? weight = null,
-    Object? weightUnit = null,
     Object? breakTime = null,
     Object? muscleGroup = null,
     Object? equipment = null,
@@ -81,26 +75,18 @@ class _$ExerciseCopyWithImpl<$Res, $Val extends Exercise>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      activeSet: null == activeSet
+          ? _value.activeSet
+          : activeSet // ignore: cast_nullable_to_non_nullable
+              as int,
+      exerciseDone: null == exerciseDone
+          ? _value.exerciseDone
+          : exerciseDone // ignore: cast_nullable_to_non_nullable
+              as bool,
       sets: null == sets
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as int,
-      reps: null == reps
-          ? _value.reps
-          : reps // ignore: cast_nullable_to_non_nullable
-              as int,
-      repUnit: null == repUnit
-          ? _value.repUnit
-          : repUnit // ignore: cast_nullable_to_non_nullable
-              as String,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as int,
-      weightUnit: null == weightUnit
-          ? _value.weightUnit
-          : weightUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<MySet>,
       breakTime: null == breakTime
           ? _value.breakTime
           : breakTime // ignore: cast_nullable_to_non_nullable
@@ -127,11 +113,9 @@ abstract class _$$ExerciseImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      int sets,
-      int reps,
-      String repUnit,
-      int weight,
-      String weightUnit,
+      int activeSet,
+      bool exerciseDone,
+      List<MySet> sets,
       int breakTime,
       String muscleGroup,
       List<String> equipment});
@@ -149,11 +133,9 @@ class __$$ExerciseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? activeSet = null,
+    Object? exerciseDone = null,
     Object? sets = null,
-    Object? reps = null,
-    Object? repUnit = null,
-    Object? weight = null,
-    Object? weightUnit = null,
     Object? breakTime = null,
     Object? muscleGroup = null,
     Object? equipment = null,
@@ -163,26 +145,18 @@ class __$$ExerciseImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      activeSet: null == activeSet
+          ? _value.activeSet
+          : activeSet // ignore: cast_nullable_to_non_nullable
+              as int,
+      exerciseDone: null == exerciseDone
+          ? _value.exerciseDone
+          : exerciseDone // ignore: cast_nullable_to_non_nullable
+              as bool,
       sets: null == sets
-          ? _value.sets
+          ? _value._sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as int,
-      reps: null == reps
-          ? _value.reps
-          : reps // ignore: cast_nullable_to_non_nullable
-              as int,
-      repUnit: null == repUnit
-          ? _value.repUnit
-          : repUnit // ignore: cast_nullable_to_non_nullable
-              as String,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as int,
-      weightUnit: null == weightUnit
-          ? _value.weightUnit
-          : weightUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<MySet>,
       breakTime: null == breakTime
           ? _value.breakTime
           : breakTime // ignore: cast_nullable_to_non_nullable
@@ -204,15 +178,14 @@ class __$$ExerciseImplCopyWithImpl<$Res>
 class _$ExerciseImpl implements _Exercise {
   const _$ExerciseImpl(
       {required this.name,
-      required this.sets,
-      required this.reps,
-      required this.repUnit,
-      required this.weight,
-      required this.weightUnit,
+      required this.activeSet,
+      required this.exerciseDone,
+      required final List<MySet> sets,
       required this.breakTime,
       required this.muscleGroup,
       required final List<String> equipment})
-      : _equipment = equipment;
+      : _sets = sets,
+        _equipment = equipment;
 
   factory _$ExerciseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExerciseImplFromJson(json);
@@ -220,15 +193,17 @@ class _$ExerciseImpl implements _Exercise {
   @override
   final String name;
   @override
-  final int sets;
+  final int activeSet;
   @override
-  final int reps;
+  final bool exerciseDone;
+  final List<MySet> _sets;
   @override
-  final String repUnit;
-  @override
-  final int weight;
-  @override
-  final String weightUnit;
+  List<MySet> get sets {
+    if (_sets is EqualUnmodifiableListView) return _sets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sets);
+  }
+
   @override
   final int breakTime;
   @override
@@ -243,7 +218,7 @@ class _$ExerciseImpl implements _Exercise {
 
   @override
   String toString() {
-    return 'Exercise(name: $name, sets: $sets, reps: $reps, repUnit: $repUnit, weight: $weight, weightUnit: $weightUnit, breakTime: $breakTime, muscleGroup: $muscleGroup, equipment: $equipment)';
+    return 'Exercise(name: $name, activeSet: $activeSet, exerciseDone: $exerciseDone, sets: $sets, breakTime: $breakTime, muscleGroup: $muscleGroup, equipment: $equipment)';
   }
 
   @override
@@ -252,12 +227,11 @@ class _$ExerciseImpl implements _Exercise {
         (other.runtimeType == runtimeType &&
             other is _$ExerciseImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.sets, sets) || other.sets == sets) &&
-            (identical(other.reps, reps) || other.reps == reps) &&
-            (identical(other.repUnit, repUnit) || other.repUnit == repUnit) &&
-            (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.weightUnit, weightUnit) ||
-                other.weightUnit == weightUnit) &&
+            (identical(other.activeSet, activeSet) ||
+                other.activeSet == activeSet) &&
+            (identical(other.exerciseDone, exerciseDone) ||
+                other.exerciseDone == exerciseDone) &&
+            const DeepCollectionEquality().equals(other._sets, _sets) &&
             (identical(other.breakTime, breakTime) ||
                 other.breakTime == breakTime) &&
             (identical(other.muscleGroup, muscleGroup) ||
@@ -271,11 +245,9 @@ class _$ExerciseImpl implements _Exercise {
   int get hashCode => Object.hash(
       runtimeType,
       name,
-      sets,
-      reps,
-      repUnit,
-      weight,
-      weightUnit,
+      activeSet,
+      exerciseDone,
+      const DeepCollectionEquality().hash(_sets),
       breakTime,
       muscleGroup,
       const DeepCollectionEquality().hash(_equipment));
@@ -297,11 +269,9 @@ class _$ExerciseImpl implements _Exercise {
 abstract class _Exercise implements Exercise {
   const factory _Exercise(
       {required final String name,
-      required final int sets,
-      required final int reps,
-      required final String repUnit,
-      required final int weight,
-      required final String weightUnit,
+      required final int activeSet,
+      required final bool exerciseDone,
+      required final List<MySet> sets,
       required final int breakTime,
       required final String muscleGroup,
       required final List<String> equipment}) = _$ExerciseImpl;
@@ -312,15 +282,11 @@ abstract class _Exercise implements Exercise {
   @override
   String get name;
   @override
-  int get sets;
+  int get activeSet;
   @override
-  int get reps;
+  bool get exerciseDone;
   @override
-  String get repUnit;
-  @override
-  int get weight;
-  @override
-  String get weightUnit;
+  List<MySet> get sets;
   @override
   int get breakTime;
   @override

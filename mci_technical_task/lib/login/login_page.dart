@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Page'),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,9 +68,8 @@ class LoginPage extends StatelessWidget {
                               passwordTextController.text)
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
-                          final Training training = await loadJsonFromAssets();
                           //navigate to dashboard page if login was successful
-                          Get.off(DashboardPage(training: training)); //use Get.off to remove the login page from the navigation stack
+                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }
@@ -87,9 +86,8 @@ class LoginPage extends StatelessWidget {
                               passwordTextController.text)
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
-                          final Training training = await loadJsonFromAssets();
                           //navigate to dashboard page if registration was successful
-                          Get.off(DashboardPage(training: training)); //use Get.off to remove the login page from the navigation stack
+                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }

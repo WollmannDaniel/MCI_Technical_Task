@@ -12,6 +12,7 @@ class Training with _$Training {
     required int duration,
     required String category,
     required String split,
+    required bool trainingFinished,
     required List<Exercise> exercises,
   }) = _Training;
 

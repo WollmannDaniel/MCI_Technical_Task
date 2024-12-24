@@ -13,6 +13,7 @@ _$TrainingImpl _$$TrainingImplFromJson(Map<String, dynamic> json) =>
       duration: (json['duration'] as num).toInt(),
       category: json['category'] as String,
       split: json['split'] as String,
+      trainingFinished: json['trainingFinished'] as bool,
       exercises: (json['exercises'] as List<dynamic>)
           .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$TrainingImplToJson(_$TrainingImpl instance) =>
       'duration': instance.duration,
       'category': instance.category,
       'split': instance.split,
+      'trainingFinished': instance.trainingFinished,
       'exercises': instance.exercises,
     };

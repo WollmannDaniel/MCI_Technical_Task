@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:mci_technical_task/dashboard/dashboard_controller.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/login/login_page.dart';
 import 'package:mci_technical_task/model/training.dart';
+import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/utils/helper.dart';
 import 'firebase_options.dart';
 
@@ -29,6 +31,11 @@ class MyApp extends StatelessWidget {
 
     //make controllers available globally
     final LoginController loginController = Get.put(LoginController());
+    final DashboardController dashboardController = Get.put(DashboardController());
+    final TrainingController trainingController = Get.put(TrainingController());
+
+    dashboardController.setTrainingData(training);
+    trainingController.setTrainingData(training);
     bool userIsAuthenticated = loginController.isUserAuthenticated();
     
     return GetMaterialApp( //use GetMaterialApp to use routes, snackbacks, etc.
@@ -38,7 +45,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
       ),
-      home: userIsAuthenticated ? DashboardPage(training: training) : LoginPage(),
+      home: userIsAuthenticated ? DashboardPage() : LoginPage(),
     );
   }
 }

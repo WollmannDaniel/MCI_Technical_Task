@@ -25,6 +25,7 @@ mixin _$Training {
   int get duration => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get split => throw _privateConstructorUsedError;
+  bool get trainingFinished => throw _privateConstructorUsedError;
   List<Exercise> get exercises => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $TrainingCopyWith<$Res> {
       int duration,
       String category,
       String split,
+      bool trainingFinished,
       List<Exercise> exercises});
 }
 
@@ -65,6 +67,7 @@ class _$TrainingCopyWithImpl<$Res, $Val extends Training>
     Object? duration = null,
     Object? category = null,
     Object? split = null,
+    Object? trainingFinished = null,
     Object? exercises = null,
   }) {
     return _then(_value.copyWith(
@@ -88,6 +91,10 @@ class _$TrainingCopyWithImpl<$Res, $Val extends Training>
           ? _value.split
           : split // ignore: cast_nullable_to_non_nullable
               as String,
+      trainingFinished: null == trainingFinished
+          ? _value.trainingFinished
+          : trainingFinished // ignore: cast_nullable_to_non_nullable
+              as bool,
       exercises: null == exercises
           ? _value.exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -110,6 +117,7 @@ abstract class _$$TrainingImplCopyWith<$Res>
       int duration,
       String category,
       String split,
+      bool trainingFinished,
       List<Exercise> exercises});
 }
 
@@ -129,6 +137,7 @@ class __$$TrainingImplCopyWithImpl<$Res>
     Object? duration = null,
     Object? category = null,
     Object? split = null,
+    Object? trainingFinished = null,
     Object? exercises = null,
   }) {
     return _then(_$TrainingImpl(
@@ -152,6 +161,10 @@ class __$$TrainingImplCopyWithImpl<$Res>
           ? _value.split
           : split // ignore: cast_nullable_to_non_nullable
               as String,
+      trainingFinished: null == trainingFinished
+          ? _value.trainingFinished
+          : trainingFinished // ignore: cast_nullable_to_non_nullable
+              as bool,
       exercises: null == exercises
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -169,6 +182,7 @@ class _$TrainingImpl implements _Training {
       required this.duration,
       required this.category,
       required this.split,
+      required this.trainingFinished,
       required final List<Exercise> exercises})
       : _exercises = exercises;
 
@@ -185,6 +199,8 @@ class _$TrainingImpl implements _Training {
   final String category;
   @override
   final String split;
+  @override
+  final bool trainingFinished;
   final List<Exercise> _exercises;
   @override
   List<Exercise> get exercises {
@@ -195,7 +211,7 @@ class _$TrainingImpl implements _Training {
 
   @override
   String toString() {
-    return 'Training(name: $name, description: $description, duration: $duration, category: $category, split: $split, exercises: $exercises)';
+    return 'Training(name: $name, description: $description, duration: $duration, category: $category, split: $split, trainingFinished: $trainingFinished, exercises: $exercises)';
   }
 
   @override
@@ -211,14 +227,23 @@ class _$TrainingImpl implements _Training {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.split, split) || other.split == split) &&
+            (identical(other.trainingFinished, trainingFinished) ||
+                other.trainingFinished == trainingFinished) &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, duration,
-      category, split, const DeepCollectionEquality().hash(_exercises));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      description,
+      duration,
+      category,
+      split,
+      trainingFinished,
+      const DeepCollectionEquality().hash(_exercises));
 
   @JsonKey(ignore: true)
   @override
@@ -241,6 +266,7 @@ abstract class _Training implements Training {
       required final int duration,
       required final String category,
       required final String split,
+      required final bool trainingFinished,
       required final List<Exercise> exercises}) = _$TrainingImpl;
 
   factory _Training.fromJson(Map<String, dynamic> json) =
@@ -256,6 +282,8 @@ abstract class _Training implements Training {
   String get category;
   @override
   String get split;
+  @override
+  bool get trainingFinished;
   @override
   List<Exercise> get exercises;
   @override

@@ -4,59 +4,165 @@
   "duration": 50,
   "category": "Krafttraining",
   "split": "Ganzkörper",
+  "trainingFinished": false,
   "exercises": [
     {
       "name": "Kniebeugen",
-      "sets": 5,
-      "reps": 10,
-      "repUnit": "Wdh",
-      "weight": 20,
-      "weightUnit": "kg",
-      "breakTime": 60,
+      "activeSet": 0,
+      "exerciseDone": false,
+      "sets": [
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        },
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        }
+      ],
+      "breakTime": 4,
       "muscleGroup": "Beine",
-      "equipment": ["Rack", "Langhantel"]
+      "equipment": [
+        "Rack",
+        "Langhantel"
+      ]
     },
     {
       "name": "KH-Bankdrücken",
-      "sets": 3,
-      "reps": 10,
-      "repUnit": "Wdh",
-      "weight": 20,
-      "weightUnit": "kg",
-      "breakTime": 60,
+      "activeSet": 0,
+      "exerciseDone": false,
+      "sets": [
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        },
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        }
+      ],
+      "breakTime": 4,
       "muscleGroup": "Brust",
-      "equipment": ["Bank", "Kurzhanteln"]
+      "equipment": [
+        "Bank",
+        "Kurzhanteln"
+      ]
     },
     {
       "name": "Kreuzheben",
-      "sets": 3,
-      "reps": 10,
-      "repUnit": "Wdh",
-      "weight": 20,
-      "weightUnit": "kg",
-      "breakTime": 60,
+      "activeSet": 0,
+      "exerciseDone": false,
+      "sets": [
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        },
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 20,
+            "unit": "kg"
+          }
+        }
+      ],
+      "breakTime": 4,
       "muscleGroup": "Rücken",
-      "equipment": ["Langhantel"]
+      "equipment": [
+        "Langhantel"
+      ]
     },
     {
       "name": "Klimmzüge",
-      "sets": 3,
-      "reps": 10,
-      "repUnit": "Wdh",
-      "weight": 0,
-      "weightUnit": "kg",
-      "breakTime": 60,
+      "activeSet": 0,
+      "exerciseDone": false,
+      "sets": [
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 0,
+            "unit": "kg"
+          }
+        },
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "Wdh"
+          },
+          "weight": {
+            "amount": 0,
+            "unit": "kg"
+          }
+        }
+      ],
+      "breakTime": 4,
       "muscleGroup": "Rücken",
-      "equipment": ["Klimmzugstange"]
+      "equipment": [
+        "Klimmzugstange"
+      ]
     },
     {
       "name": "Planks",
-      "sets": 3,
-      "reps": 40,
-      "repUnit": "s",
-      "weight": 0,
-      "weightUnit": "kg",
-      "breakTime": 60,
+      "activeSet": 0,
+      "exerciseDone": false,
+      "sets": [
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "s"
+          },
+          "weight": {
+            "amount": 0,
+            "unit": "kg"
+          }
+        },
+        {
+          "reps": {
+            "amount": 10,
+            "unit": "s"
+          },
+          "weight": {
+            "amount": 0,
+            "unit": "kg"
+          }
+        }
+      ],
+      "breakTime": 4,
       "muscleGroup": "Bauch",
       "equipment": []
     }

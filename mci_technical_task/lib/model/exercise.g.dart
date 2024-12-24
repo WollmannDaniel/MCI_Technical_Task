@@ -9,11 +9,11 @@ part of 'exercise.dart';
 _$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
     _$ExerciseImpl(
       name: json['name'] as String,
-      sets: (json['sets'] as num).toInt(),
-      reps: (json['reps'] as num).toInt(),
-      repUnit: json['repUnit'] as String,
-      weight: (json['weight'] as num).toInt(),
-      weightUnit: json['weightUnit'] as String,
+      activeSet: (json['activeSet'] as num).toInt(),
+      exerciseDone: json['exerciseDone'] as bool,
+      sets: (json['sets'] as List<dynamic>)
+          .map((e) => MySet.fromJson(e as Map<String, dynamic>))
+          .toList(),
       breakTime: (json['breakTime'] as num).toInt(),
       muscleGroup: json['muscleGroup'] as String,
       equipment:
@@ -23,11 +23,9 @@ _$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'activeSet': instance.activeSet,
+      'exerciseDone': instance.exerciseDone,
       'sets': instance.sets,
-      'reps': instance.reps,
-      'repUnit': instance.repUnit,
-      'weight': instance.weight,
-      'weightUnit': instance.weightUnit,
       'breakTime': instance.breakTime,
       'muscleGroup': instance.muscleGroup,
       'equipment': instance.equipment,
