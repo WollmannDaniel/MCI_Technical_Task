@@ -1,15 +1,12 @@
 import 'dart:async';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/firebase/firebase_controller.dart';
-import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/model/training.dart';
 
 class DashboardController extends GetxController {
   final FirebaseController firebaseController = Get.find();
 
+  //current training from json
   Rx<Training> training = Rx<Training>(const Training(
     name: '',
     description: '',
@@ -20,6 +17,7 @@ class DashboardController extends GetxController {
     trainingFinished: false,
   ));
 
+  //last loaded training from firestore
   Rx<Training> lastTraining = Rx<Training>(const Training(
     name: '',
     description: '',
@@ -37,7 +35,7 @@ class DashboardController extends GetxController {
   Future<void> loadLastTrainingFromFirestore() async {
     try {
       String? userID = firebaseController.getUserId();
-      print("userID load:" + userID!);
+      print("userID load: $userID");
 
       if(userID != null) {
         Training? lastTraining = await firebaseController.loadLastTrainingFromFirestore(userID);

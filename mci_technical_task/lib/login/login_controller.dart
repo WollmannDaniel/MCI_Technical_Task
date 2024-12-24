@@ -12,7 +12,7 @@ class LoginController extends GetxController {
 
     bool ret = await firebaseController.createUser(email, password);
 
-    _loadLastTraingFromFirestore();
+    _loadLastTrainingFromFirestore();
 
     return ret;
   }
@@ -21,7 +21,6 @@ class LoginController extends GetxController {
     return firebaseController.isUserAuthenticated();
   }
 
-  //return user id if user is authenticated
   String? getUserId() {
     return firebaseController.getUserId();
   }
@@ -30,7 +29,7 @@ class LoginController extends GetxController {
 
     bool ret = await firebaseController.loginUser(email, password);
 
-    _loadLastTraingFromFirestore();
+    _loadLastTrainingFromFirestore();
 
     return ret;
   }
@@ -39,8 +38,7 @@ class LoginController extends GetxController {
     firebaseController.logoutUser();
   }
 
-  void _loadLastTraingFromFirestore() {
-    //load last training from firestore
+  void _loadLastTrainingFromFirestore() {
     dashboardController.loadLastTrainingFromFirestore();
   }
 }

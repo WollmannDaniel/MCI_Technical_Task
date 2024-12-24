@@ -12,6 +12,7 @@ class TrainingController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final LoginController loginController = Get.find();
 
+  //current training from json
   Rx<Training> training = Rx<Training>(const Training(
     name: '',
     description: '',
@@ -23,6 +24,7 @@ class TrainingController extends GetxController {
   ));
 
   void setTrainingData(Training training) {
+    //set state
     this.training.value = training;
   }
 
@@ -34,27 +36,27 @@ class TrainingController extends GetxController {
     _modifyWeightHelper(-1, exerciseName);
   }
 
+  //modify weight of exercise by value provided by parameter
   void _modifyWeightHelper(int modifyValue, String exerciseName) {
-    Training tempTraining = training.value;
-    List<Exercise> tempExercises = List.from(tempTraining.exercises);
-    int activeSet = tempExercises
+    List<Exercise> modifiableExercises = List.from(training.value.exercises);
+    int activeSet = modifiableExercises
         .firstWhere((exercise) => exercise.name == exerciseName)
         .activeSet;
     Exercise currentExercise =
-        tempExercises.firstWhere((exercise) => exercise.name == exerciseName);
-    int indexOfExercise = tempExercises.indexOf(currentExercise);
+        modifiableExercises.firstWhere((exercise) => exercise.name == exerciseName);
+    int indexOfExercise = modifiableExercises.indexOf(currentExercise);
+    List<MySet> modifiableSets = List.from(modifiableExercises[indexOfExercise].sets);
 
-    List<MySet> tempSets = List.from(tempExercises[indexOfExercise].sets);
-
-    tempSets[activeSet] = tempSets[activeSet].copyWith(
-        weight: tempSets[activeSet]
+    modifiableSets[activeSet] = modifiableSets[activeSet].copyWith(
+        weight: modifiableSets[activeSet]
             .weight
-            .copyWith(amount: tempSets[activeSet].weight.amount + modifyValue));
+            .copyWith(amount: modifiableSets[activeSet].weight.amount + modifyValue));
 
-    tempExercises[indexOfExercise] =
-        tempExercises[indexOfExercise].copyWith(sets: tempSets);
+    modifiableExercises[indexOfExercise] =
+        modifiableExercises[indexOfExercise].copyWith(sets: modifiableSets);
 
-    training.value = training.value.copyWith(exercises: tempExercises);
+    //set state
+    training.value = training.value.copyWith(exercises: modifiableExercises);
   }
 
   void incrementReps(String exerciseName) {
@@ -66,35 +68,34 @@ class TrainingController extends GetxController {
   }
 
   void _modifyRepsHelper(int modifyValue, String exerciseName) {
-    List<Exercise> tempExercises = List.from(training.value.exercises);
-    int activeSet = tempExercises
+    List<Exercise> modifiableExercises = List.from(training.value.exercises);
+    int activeSet = modifiableExercises
         .firstWhere((exercise) => exercise.name == exerciseName)
         .activeSet;
     Exercise currentExercise =
-        tempExercises.firstWhere((exercise) => exercise.name == exerciseName);
-    int indexOfExercise = tempExercises.indexOf(currentExercise);
+        modifiableExercises.firstWhere((exercise) => exercise.name == exerciseName);
+    int indexOfExercise = modifiableExercises.indexOf(currentExercise);
+    List<MySet> modifiableSets = List.from(modifiableExercises[indexOfExercise].sets);
 
-    List<MySet> tempSets = List.from(tempExercises[indexOfExercise].sets);
-
-    tempSets[activeSet] = tempSets[activeSet].copyWith(
-        reps: tempSets[activeSet]
+    modifiableSets[activeSet] = modifiableSets[activeSet].copyWith(
+        reps: modifiableSets[activeSet]
             .reps
-            .copyWith(amount: tempSets[activeSet].reps.amount + modifyValue));
+            .copyWith(amount: modifiableSets[activeSet].reps.amount + modifyValue));
 
-    tempExercises[indexOfExercise] =
-        tempExercises[indexOfExercise].copyWith(sets: tempSets);
+    modifiableExercises[indexOfExercise] =
+        modifiableExercises[indexOfExercise].copyWith(sets: modifiableSets);
 
-    training.value = training.value.copyWith(exercises: tempExercises);
+    //set state
+    training.value = training.value.copyWith(exercises: modifiableExercises);
   }
 
   void incrementActiveSet(
       String exerciseName, TimerController timerController) {
-    List<Exercise> tempExercises = List.from(training.value.exercises);
+    List<Exercise> modifiableExercises = List.from(training.value.exercises);
     Exercise currentExercise =
-        tempExercises.firstWhere((exercise) => exercise.name == exerciseName);
-    int indexOfExercise = tempExercises.indexOf(currentExercise);
-
-    List<MySet> tempSets = List.from(tempExercises[indexOfExercise].sets);
+        modifiableExercises.firstWhere((exercise) => exercise.name == exerciseName);
+    int indexOfExercise = modifiableExercises.indexOf(currentExercise);
+    List<MySet> modifiableSets = List.from(modifiableExercises[indexOfExercise].sets);
 
     int reps = currentExercise.sets[currentExercise.activeSet].reps.amount;
     int weight = currentExercise.sets[currentExercise.activeSet].weight.amount;
@@ -103,35 +104,35 @@ class TrainingController extends GetxController {
     double e1rm = _calculateE1RM(reps, weight);
 
     //set calculated max rep
-    tempSets[currentExercise.activeSet] =
-        tempSets[currentExercise.activeSet].copyWith(calculatedMaxRep: e1rm);
+    modifiableSets[currentExercise.activeSet] =
+        modifiableSets[currentExercise.activeSet].copyWith(calculatedMaxRep: e1rm);
 
     //set new sets
-    tempExercises[indexOfExercise] =
-        tempExercises[indexOfExercise].copyWith(sets: tempSets);
+    modifiableExercises[indexOfExercise] =
+        modifiableExercises[indexOfExercise].copyWith(sets: modifiableSets);
 
     //trigger timer
-    _triggerTimer(tempExercises[indexOfExercise].breakTime, timerController);
+    _triggerTimer(modifiableExercises[indexOfExercise].breakTime, timerController);
 
-    if (tempExercises[indexOfExercise].activeSet + 1 ==
-        tempExercises[indexOfExercise].sets.length) {
+    if (modifiableExercises[indexOfExercise].activeSet + 1 ==
+        modifiableExercises[indexOfExercise].sets.length) {
       //set exercise to done
-      tempExercises[indexOfExercise] = tempExercises[indexOfExercise].copyWith(
+      modifiableExercises[indexOfExercise] = modifiableExercises[indexOfExercise].copyWith(
           exerciseDone: true,
-          activeSet: tempExercises[indexOfExercise].activeSet + 1);
+          activeSet: modifiableExercises[indexOfExercise].activeSet + 1);
     } else {
       //increment active set
-      tempExercises[indexOfExercise] = tempExercises[indexOfExercise]
-          .copyWith(activeSet: tempExercises[indexOfExercise].activeSet + 1);
+      modifiableExercises[indexOfExercise] = modifiableExercises[indexOfExercise]
+          .copyWith(activeSet: modifiableExercises[indexOfExercise].activeSet + 1);
     }
 
     //check if training is finished
-    if (tempExercises.every((exercise) => exercise.exerciseDone)) {
+    if (modifiableExercises.every((exercise) => exercise.exerciseDone)) {
       setTrainingToFinished();
     }
 
     //set state
-    training.value = training.value.copyWith(exercises: tempExercises);
+    training.value = training.value.copyWith(exercises: modifiableExercises);
   }
 
   void setTrainingToFinished() {

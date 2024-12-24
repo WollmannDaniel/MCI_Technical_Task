@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -51,7 +49,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: userIsAuthenticated ? DashboardPage() : LoginPage(),
+      home: userIsAuthenticated ? const DashboardPage() : const LoginPage(),
     );
   }
 }

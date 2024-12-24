@@ -4,7 +4,6 @@ import 'package:mci_technical_task/dashboard/dashboard_controller.dart';
 import 'package:mci_technical_task/model/training.dart';
 import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/training/training_page.dart';
-import 'package:mci_technical_task/utils/helper.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -41,7 +40,7 @@ class DashboardPage extends StatelessWidget {
                           ? () => {
                                 trainingController.setTrainingData(
                                     dashboardController.lastTraining.value),
-                                Get.to(() =>TrainingPage()),
+                                Get.to(() =>const TrainingPage()),
                               }
                           : null,
                       icon: !dashboardController
@@ -63,9 +62,9 @@ class DashboardPage extends StatelessWidget {
             height: 100,
             child: ElevatedButton(
               onPressed: () {
-                Get.to(() => TrainingPage());
+                Get.to(() => const TrainingPage());
               },
-              child: Text('Start Training'),
+              child: const Text('Start Training'),
             ),
           )),
     );

@@ -5,7 +5,7 @@ import 'package:mci_technical_task/model/exercise.dart';
 class SetDetailsWidget extends StatelessWidget {
   final Rx<Exercise> exercise;
 
-  SetDetailsWidget({
+  const SetDetailsWidget({super.key, 
     required this.exercise,
   });
 

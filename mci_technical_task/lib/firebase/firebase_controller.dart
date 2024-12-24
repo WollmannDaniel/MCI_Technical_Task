@@ -27,6 +27,7 @@ class FirebaseController extends GetxController {
           email: email, password: password);
 
       isLoggedIn.value = true;
+
       Get.snackbar('Success', 'Successfully registered!',
           snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
@@ -46,7 +47,6 @@ class FirebaseController extends GetxController {
     return true;
   }
 
-  //return user id if user is authenticated
   String? getUserId() {
     if (user.value == null) {
       return null;
@@ -61,6 +61,7 @@ class FirebaseController extends GetxController {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
 
       isLoggedIn.value = true;
+
       Get.snackbar('Success', 'Logged in successfully!',
           snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
@@ -74,7 +75,9 @@ class FirebaseController extends GetxController {
 
   Future<void> logoutUser() async {
     await _auth.signOut();
+
     isLoggedIn.value = false;
+
     Get.snackbar('Success', 'Logged out successfully!',
         snackPosition: SnackPosition.BOTTOM);
   }
@@ -84,6 +87,7 @@ class FirebaseController extends GetxController {
         await _firestore.collection('users').doc(userID).get();
 
     print("DocumentSnapshot: ${documentSnapshot.data()}");
+    
     if (documentSnapshot.exists) {
       final userData = documentSnapshot.data();
 

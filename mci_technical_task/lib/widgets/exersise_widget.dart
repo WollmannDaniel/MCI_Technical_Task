@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/model/exercise.dart';
@@ -11,9 +9,9 @@ class ExerciseWidget extends StatelessWidget {
   final Rx<Exercise> exercise;
 
   const ExerciseWidget({
-    Key? key,
+    super.key,
     required this.exercise,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +19,30 @@ class ExerciseWidget extends StatelessWidget {
     TimerController timerController = Get.find();
 
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               exercise.value.name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text('Sets: ${exercise.value.sets.length}'),
             Text('Break Time: ${exercise.value.breakTime} seconds'),
             Text('Muscle Group: ${exercise.value.muscleGroup}'),
             Text('Equipment: ${exercise.value.equipment.join(', ')}'),
+
             Obx(() {
               return Column(
                 children: [
+
+                  //SET DETAILS
                   SetDetailsWidget(exercise: exercise),
+
+                  //PLUS MINUS BUTTONS
                   (!exercise.value.exerciseDone &&
                           !timerController.isTimerRunning.value)
                       ? Padding(
@@ -59,19 +62,23 @@ class ExerciseWidget extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
+
+                                          //DECREMENT REPS
                                           GestureDetector(
                                             onTap: () {
                                               trainingController.decrementReps(
                                                   exercise.value.name);
                                             },
-                                            child: Icon(Icons.remove_circle),
+                                            child: const Icon(Icons.remove_circle),
                                           ),
+
+                                          //INCREMENT REPS
                                           GestureDetector(
                                             onTap: () {
                                               trainingController.incrementReps(
                                                   exercise.value.name);
                                             },
-                                            child: Icon(Icons.add_box),
+                                            child: const Icon(Icons.add_box),
                                           ),
                                         ],
                                       ),
@@ -87,19 +94,23 @@ class ExerciseWidget extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
+
+                                          //DECREMENT WEIGHT
                                           GestureDetector(
                                             onTap: () {
                                               trainingController.decrementWeight(
                                                   exercise.value.name);
                                             },
-                                            child: Icon(Icons.remove_circle),
+                                            child: const Icon(Icons.remove_circle),
                                           ),
+
+                                          //INCREMENT WEIGHT
                                           GestureDetector(
                                             onTap: () {
                                               trainingController.incrementWeight(
                                                   exercise.value.name);
                                             },
-                                            child: Icon(Icons.add_box),
+                                            child: const Icon(Icons.add_box),
                                           ),
                                         ],
                                       ),
@@ -124,7 +135,7 @@ class ExerciseWidget extends StatelessWidget {
                                 trainingController.incrementActiveSet(
                                     exercise.value.name, timerController);
                               },
-                              child: Text('Set done')),
+                              child: const Text('Set done')),
                         )
                       : Container(),
                 ],

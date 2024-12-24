@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/model/exercise.dart';
-import 'package:mci_technical_task/model/training.dart';
 import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/widgets/exersise_widget.dart';
 
 class TrainingPage extends StatelessWidget {
-  const TrainingPage({Key? key}) : super(key: key);
+  const TrainingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class TrainingPage extends StatelessWidget {
                   //safe training to firestore
                   trainingController.saveTrainingToFirestore();
                 },
-                child: Text('End Training'),
+                child: const Text('End Training'),
               ),
             )),
       );

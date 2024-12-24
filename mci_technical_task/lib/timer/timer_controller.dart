@@ -13,7 +13,7 @@ class TimerController extends GetxController {
   void startTimer() {
     if (_timer != null && _timer!.isActive) return; // Prevent multiple timers
     isTimerRunning.value = true; 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (timeRemaining.value > 0) {
         timeRemaining.value--; // Update time
       } else {

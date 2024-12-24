@@ -1,13 +1,12 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
 import 'package:mci_technical_task/firebase/firebase_controller.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
-import 'package:mci_technical_task/model/training.dart';
-import 'package:mci_technical_task/utils/helper.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find();
@@ -71,7 +70,7 @@ class LoginPage extends StatelessWidget {
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
                           //navigate to dashboard page if login was successful
-                          Get.off(() => DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(() => const DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }
@@ -89,7 +88,7 @@ class LoginPage extends StatelessWidget {
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
                           //navigate to dashboard page if registration was successful
-                          Get.off(() => DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(() => const DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }
