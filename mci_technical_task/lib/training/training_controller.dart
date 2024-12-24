@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mci_technical_task/model/exercise.dart';
 import 'package:mci_technical_task/model/sets.dart';
 import 'package:mci_technical_task/model/training.dart';
+import 'package:mci_technical_task/timer/timer_controller.dart';
 import 'package:mci_technical_task/utils/helper.dart';
 
 class TrainingController extends GetxController {
@@ -70,7 +71,7 @@ class TrainingController extends GetxController {
     training.value = training.value.copyWith(exercises: tempExercises);
   }
 
-  void incrementActiveSet(String exerciseName){
+  void incrementActiveSet(String exerciseName, TimerController timerController) {
     List<Exercise> tempExercises = List.from(training.value.exercises);
 
     for(int exerciseIndex = 0; exerciseIndex < tempExercises.length; exerciseIndex++){
@@ -89,6 +90,12 @@ class TrainingController extends GetxController {
     }
 
     training.value = training.value.copyWith(exercises: tempExercises);
+
+    //set timer to break time
+    timerController.setTime(tempExercises.firstWhere((exercise) => exercise.name == exerciseName).breakTime);
+
+    //start timer
+    timerController.startTimer();
   }
 
 

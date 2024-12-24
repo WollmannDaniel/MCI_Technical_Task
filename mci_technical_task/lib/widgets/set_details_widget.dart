@@ -22,7 +22,7 @@ class SetDetailsWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(children: [
-                Text('Set ${index + 1}', style: (exercise.value.activeSet == index)? TextStyle(color: Colors.green, fontWeight: FontWeight.bold) : TextStyle(fontWeight: FontWeight.bold),),
+                Text('Set ${index + 1}', style: (exercise.value.activeSet == index)? const TextStyle(color: Colors.green, fontWeight: FontWeight.bold) : const TextStyle(fontWeight: FontWeight.bold),),
               ]),
             ),
             Padding(

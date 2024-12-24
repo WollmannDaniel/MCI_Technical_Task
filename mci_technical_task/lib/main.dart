@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import 'package:mci_technical_task/dashboard/dashboard_page.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/login/login_page.dart';
 import 'package:mci_technical_task/model/training.dart';
+import 'package:mci_technical_task/timer/timer_controller.dart';
 import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/utils/helper.dart';
 import 'firebase_options.dart';
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
     final LoginController loginController = Get.put(LoginController());
     final DashboardController dashboardController = Get.put(DashboardController());
     final TrainingController trainingController = Get.put(TrainingController());
+    final TimerController timerController = Get.put(TimerController());
 
     dashboardController.setTrainingData(training);
     trainingController.setTrainingData(training);
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MCI Technical Task',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: userIsAuthenticated ? DashboardPage() : LoginPage(),

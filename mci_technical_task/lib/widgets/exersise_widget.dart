@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/model/exercise.dart';
+import 'package:mci_technical_task/timer/timer_controller.dart';
 import 'package:mci_technical_task/training/training_controller.dart';
 import 'package:mci_technical_task/widgets/set_details_widget.dart';
 
@@ -17,6 +18,7 @@ class ExerciseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TrainingController trainingController = Get.find();
+    TimerController timerController = Get.find();
 
     return Card(
       margin: EdgeInsets.all(10),
@@ -38,7 +40,7 @@ class ExerciseWidget extends StatelessWidget {
               return Column(
                       children: [
                         SetDetailsWidget(exercise: exercise),
-                        !exercise.value.exerciseDone ? Padding(
+                        (!exercise.value.exerciseDone && !timerController.isTimerRunning.value) ? Padding(
                           padding: const EdgeInsets.only(left: 25),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,10 +104,10 @@ class ExerciseWidget extends StatelessWidget {
                             ],
                           ),
                         ): Container(),
-                        !exercise.value.exerciseDone ? Center(
+                        (!exercise.value.exerciseDone && !timerController.isTimerRunning.value) ? Center(
                           child: ElevatedButton(
                               onPressed: () {
-                                trainingController.incrementActiveSet(exercise.value.name);
+                                trainingController.incrementActiveSet(exercise.value.name, timerController);
                               }, child: Text('Set done')),
                         ): Container(),
                       ],
