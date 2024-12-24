@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/dashboard/dashboard_controller.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
+import 'package:mci_technical_task/firebase/firebase_controller.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/login/login_page.dart';
 import 'package:mci_technical_task/model/training.dart';
@@ -33,8 +34,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     //make controllers available globally
-    final LoginController loginController = Get.put(LoginController());
+    final FirebaseController firebaseController = Get.put(FirebaseController());
     final DashboardController dashboardController = Get.put(DashboardController());
+    final LoginController loginController = Get.put(LoginController());
     final TrainingController trainingController = Get.put(TrainingController());
     final TimerController timerController = Get.put(TimerController());
 

@@ -42,6 +42,7 @@ class TrainingPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   //safe training to firestore
+                  trainingController.saveTrainingToFirestore();
                 },
                 child: Text('End Training'),
               ),

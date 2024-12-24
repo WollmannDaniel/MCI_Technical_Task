@@ -1,13 +1,17 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/model/exercise.dart';
 import 'package:mci_technical_task/model/sets.dart';
 import 'package:mci_technical_task/model/training.dart';
 import 'package:mci_technical_task/timer/timer_controller.dart';
-import 'package:mci_technical_task/utils/helper.dart';
 
 class TrainingController extends GetxController {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final LoginController loginController = Get.find();
+
   Rx<Training> training = Rx<Training>(const Training(
     name: '',
     description: '',
@@ -145,5 +149,26 @@ class TrainingController extends GetxController {
     timerController.setTime(breakTime);
     //start timer
     timerController.startTimer();
+  }
+
+  //save training to firestore
+  Future<void> saveTrainingToFirestore() async {
+    try {
+      final userID = loginController.getUserId();
+
+      print(userID);
+
+      await _firestore
+          .collection('users')
+          .doc(userID)
+          .set(training.value.toJson());
+
+      Get.back();
+
+      Get.snackbar('Training saved', 'Training saved to Firestore', snackPosition: SnackPosition.BOTTOM);
+      
+    } catch (e) {
+      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
+    }
   }
 }

@@ -25,7 +25,7 @@ Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>
       'name': instance.name,
       'activeSet': instance.activeSet,
       'exerciseDone': instance.exerciseDone,
-      'sets': instance.sets,
+      'sets': instance.sets.map((e) => e.toJson()).toList(),
       'breakTime': instance.breakTime,
       'muscleGroup': instance.muscleGroup,
       'equipment': instance.equipment,

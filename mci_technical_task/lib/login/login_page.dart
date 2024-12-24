@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mci_technical_task/dashboard/dashboard_page.dart';
+import 'package:mci_technical_task/firebase/firebase_controller.dart';
 import 'package:mci_technical_task/login/login_controller.dart';
 import 'package:mci_technical_task/model/training.dart';
 import 'package:mci_technical_task/utils/helper.dart';
@@ -10,6 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find();
+    final FirebaseController firebaseController = Get.find();
     final emailTextController = TextEditingController();
     final passwordTextController = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -55,7 +57,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               Obx(() {
-                return loginController.isLoading.value
+                return firebaseController.isLoading.value
                     ? const CircularProgressIndicator()
                     : const SizedBox();
               }),
@@ -69,7 +71,7 @@ class LoginPage extends StatelessWidget {
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
                           //navigate to dashboard page if login was successful
-                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(() => DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }
@@ -87,7 +89,7 @@ class LoginPage extends StatelessWidget {
                           .then((isLoggedIn) async {
                         if (isLoggedIn) {
                           //navigate to dashboard page if registration was successful
-                          Get.off(DashboardPage()); //use Get.off to remove the login page from the navigation stack
+                          Get.off(() => DashboardPage()); //use Get.off to remove the login page from the navigation stack
                         }
                       });
                     }

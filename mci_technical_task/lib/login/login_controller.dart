@@ -1,67 +1,46 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:mci_technical_task/dashboard/dashboard_controller.dart';
+import 'package:mci_technical_task/firebase/firebase_controller.dart';
 import 'package:mci_technical_task/utils/helper.dart';
 
 class LoginController extends GetxController {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  Rxn<User> user = Rxn<User>(); //Rxn instead of Rx to allow null values
-
-  RxBool isLoggedIn = false.obs; // Observable to track login status
-  RxBool isLoading = false.obs; // Observable to track loading status
-
-  @override
-  void onInit() {
-    user.bindStream(_auth
-        .authStateChanges()); //binds user var to the authentication state changes stream from Firebase
-    super.onInit();
-  }
+  DashboardController dashboardController = Get.find();
+  FirebaseController firebaseController = Get.find();
 
   Future<bool> createUser(String email, String password) async {
-    try {
-      isLoading.value = true;
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
-      isLoggedIn.value = true;
-      Get.snackbar('Success', 'Successfully registered!',
-          snackPosition: SnackPosition.BOTTOM);
-    } catch (e) {
-      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
-    } finally {
-      isLoading.value = false;
-    }
+    bool ret = await firebaseController.createUser(email, password);
 
-    return isLoggedIn.value;
+    _loadLastTraingFromFirestore();
+
+    return ret;
   }
 
   bool isUserAuthenticated() {
-    if (user.value == null) {
-      return false;
-    }
+    return firebaseController.isUserAuthenticated();
+  }
 
-    return true;
+  //return user id if user is authenticated
+  String? getUserId() {
+    return firebaseController.getUserId();
   }
 
   Future<bool> loginUser(String email, String password) async {
-    try {
-      isLoading.value = true;
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
 
-      isLoggedIn.value = true;
-      Get.snackbar('Success', 'Logged in successfully!',
-          snackPosition: SnackPosition.BOTTOM);
-    } catch (e) {
-      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
-    } finally {
-      isLoading.value = false;
-    }
+    bool ret = await firebaseController.loginUser(email, password);
 
-    return isLoggedIn.value;
+    _loadLastTraingFromFirestore();
+
+    return ret;
   }
 
   Future<void> logoutUser() async {
-    await _auth.signOut();
-    isLoggedIn.value = false;
-    Get.snackbar('Success', 'Logged out successfully!',
-        snackPosition: SnackPosition.BOTTOM);
+    firebaseController.logoutUser();
+  }
+
+  void _loadLastTraingFromFirestore() {
+    //load last training from firestore
+    dashboardController.loadLastTrainingFromFirestore();
   }
 }

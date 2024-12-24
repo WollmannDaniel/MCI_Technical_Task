@@ -14,8 +14,8 @@ _$MySetImpl _$$MySetImplFromJson(Map<String, dynamic> json) => _$MySetImpl(
 
 Map<String, dynamic> _$$MySetImplToJson(_$MySetImpl instance) =>
     <String, dynamic>{
-      'reps': instance.reps,
-      'weight': instance.weight,
+      'reps': instance.reps.toJson(),
+      'weight': instance.weight.toJson(),
       'calculatedMaxRep': instance.calculatedMaxRep,
     };
 

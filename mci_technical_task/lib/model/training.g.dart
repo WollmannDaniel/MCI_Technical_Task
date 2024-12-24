@@ -27,5 +27,5 @@ Map<String, dynamic> _$$TrainingImplToJson(_$TrainingImpl instance) =>
       'category': instance.category,
       'split': instance.split,
       'trainingFinished': instance.trainingFinished,
-      'exercises': instance.exercises,
+      'exercises': instance.exercises.map((e) => e.toJson()).toList(),
     };
